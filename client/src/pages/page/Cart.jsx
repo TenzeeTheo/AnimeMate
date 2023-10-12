@@ -1,5 +1,6 @@
 import React from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import MyBtn from '../../components/common/Button/MyBtn'
 
 function Cart(props) {
   return (
@@ -8,7 +9,12 @@ function Cart(props) {
         <Offcanvas.Title>Cart</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        Hi shoping
+      <h3> Your Bag Is Empty....</h3>
+      <br/>
+      <MyBtn>
+        <h5>Continue Shopping</h5>
+      </MyBtn>
+      
       </Offcanvas.Body>
     </Offcanvas>
   );
