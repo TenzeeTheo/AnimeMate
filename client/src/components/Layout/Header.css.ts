@@ -13,7 +13,6 @@ export const Content = style({
 
 
 
-  
   const bounceAnimation = keyframes({
     '0%, 20%, 50%, 80%, 100%': {
       transform: 'translateY(0)',
@@ -26,6 +25,15 @@ export const Content = style({
     },
   });
   export const user = style({
+    width: 60,
+    ':hover': {
+      animationName: bounceAnimation,
+      animationDuration: '0.5s',
+      animationTimingFunction: 'ease',
+      animationPlayState: 'running',
+    },
+  });
+  export const bag = style({
     width: 60,
     ':hover': {
       animationName: bounceAnimation,

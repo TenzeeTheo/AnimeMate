@@ -14,8 +14,9 @@ import NotFound from './pages/NotFound'
 import PrivateRoutes from './components/layout/PrivateRoutes';
 
 // {/* my idea */}
-import BestSeller from "./pages/auth/Best-Seller"
-import PopularSeries from "./pages/auth/Popular-Series"
+import Cart from './pages/page/Cart'
+import BestSeller from "./pages/page/Best-Seller"
+import PopularSeries from "./pages/page/Popular-Series"
 // {/* my extra */}
 
 function App(){
@@ -27,6 +28,7 @@ function App(){
             <Route path="login" element={< Login />} />
             <Route path="signup" element={< SignUp />} />
           {/* AUTH */}
+          <Route path="Cart" element= {<Cart/>}/>
             <Route path="best-seller" element={ <BestSeller/>}/>
             <Route path="popular-series" element={<PopularSeries/>}/>
             {/* my extra */}

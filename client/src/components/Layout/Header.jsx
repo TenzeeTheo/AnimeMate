@@ -1,9 +1,17 @@
+import {useState} from 'react';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import logo from '../../assets/manga.svg';
 import user from '../../assets/User.svg';
+import bag from '../../assets/bag.svg'
 import * as styles from './Header.css';
+import Cart from '../../pages/page/Cart';
 
 const Header = () => {
+  const [showCart, setShowCart] = useState(false);
+
+  const handleCloseCart = () => setShowCart(false);
+  const handleShowCart = () => setShowCart(true);
+
   return (
     <Navbar bg="body-tertiary" expand="lg">
       <Container>
@@ -24,9 +32,14 @@ const Header = () => {
           <Nav.Link href="/login">
             <img className={`${styles.user} ${styles.userWithAnimation}`} src={user} alt="user icon" />
           </Nav.Link>
+          <Nav.Link >
+              <img className={styles.bag} src={bag} onClick={handleShowCart} alt="bag icon" />
+              <Cart showCart={showCart} handleCloseCart={handleCloseCart} />
+            </Nav.Link>
         </Nav>
       </Container>
     </Navbar>
+  
   );
 };
 
