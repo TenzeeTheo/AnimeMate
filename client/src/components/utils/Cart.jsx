@@ -1,6 +1,6 @@
 import React from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import MyBtn from '../../components/common/Button/MyBtn'
+import MyBtn from '../common/Button/MyBtn'
 
 function Cart(props) {
   return (

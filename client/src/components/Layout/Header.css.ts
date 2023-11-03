@@ -12,7 +12,6 @@ export const Content = style({
   })
 
 
-
   const bounceAnimation = keyframes({
     '0%, 20%, 50%, 80%, 100%': {
       transform: 'translateY(0)',

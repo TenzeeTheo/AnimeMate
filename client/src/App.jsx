@@ -14,29 +14,41 @@ import NotFound from './pages/NotFound'
 import PrivateRoutes from './components/layout/PrivateRoutes';
 
 // {/* my idea */}
-import Cart from './pages/page/Cart'
-import BestSeller from "./pages/page/Best-Seller"
-import PopularSeries from "./pages/page/Popular-Series"
+import Cart from './components/utils/Cart'
+import MangaCollection from "./pages/manga/MangaCollection"
+import BestSeller from "./pages/manga/Best-Seller"
+import PopularSeries from "./pages/manga/Popular-Series"
 // {/* my extra */}
+
 
 function App(){
   return(
-    <div className="app">
+    <div  >
       <Routes>
         <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home/>}/>
+            <Route index element={<Home/>}/>
+
+          {/* AUTH */}
             <Route path="login" element={< Login />} />
             <Route path="signup" element={< SignUp />} />
-          {/* AUTH */}
-          <Route path="Cart" element= {<Cart/>}/>
-            <Route path="best-seller" element={ <BestSeller/>}/>
-            <Route path="popular-series" element={<PopularSeries/>}/>
+
             {/* my extra */}
+          <Route path="Cart" element= {<Cart/>}/>
+
+           
 
         {/* PRIVATE AUTH ROUTES */}
           <Route element={<PrivateRoutes />}>
               <Route path="dashboard" element={<Dashboard />} />
           </Route>  
+
+          {/* Manga Collection */}
+          <Route path="store">
+            <Route path="manga" element={ <MangaCollection/>}/>
+            <Route path="best-seller" element={ <BestSeller/>}/>
+            <Route path="popular-series" element={<PopularSeries/>}/>
+          </Route>  
+
           <Route path="*" element={<NotFound />} /> 
 
         </Route>

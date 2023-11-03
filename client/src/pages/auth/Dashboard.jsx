@@ -2,9 +2,6 @@ import useAuth from '../../hooks/useAuth'
 import Card from '../../components/common/Card/Card'
 import MyBtn from '../../components/common/Button/MyBtn'
 
-
-
-
 const Dashboard = () => {
   // HOOK: CONTEXT FOR AUTH
   const { user, logout } = useAuth();
@@ -21,7 +18,7 @@ const Dashboard = () => {
   }
 
   return (
-    <Card title="Profile" authform>
+     <Card title="Profile" authform>
       <div className="text-center mb-4">
         <h1>Welcome {user.username}</h1>
         <p></p>

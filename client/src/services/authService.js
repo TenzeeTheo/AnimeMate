@@ -16,7 +16,7 @@ async function login(data) {
     "/api/auth/login",
     data
   );
-  console.log(response?.data);
+  // console.log(response?.data);
   return response
 }
 

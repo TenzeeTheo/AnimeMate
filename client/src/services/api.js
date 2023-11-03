@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import {toast} from 'react-toastify'
 
 // CREATE NEW INSTANCE OF AXIOS: Allows us to customise its configuration
 const api = axios.create({
@@ -19,11 +20,10 @@ api.interceptors.response.use(null, (error) => {
 
   if (!expectedError) {
     // NOTE: We could also implement a logging system for errors here
-    console.log(`Interceptors - ${error}`);
+   
     toast.error('Unexpected Error');
   } else {
     // STANDARDISED: By creating uniform error responses, like our backend, we can standardise our errors on the front end
-    console.log(`${error?.response.data}`);
     toast(`${error.response.data}`);
   }
 
