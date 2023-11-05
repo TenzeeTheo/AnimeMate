@@ -3,6 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const helmet = require("helmet");
 
@@ -28,6 +29,10 @@ debugStartup('Helmet & CORS Pre-Flight requests enabled');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 debugStartup('POST parsing middleware enabled for JSON/URL');
+
+
+// *NEW* - File parsing middleware
+app.use(fileUpload({ createParentPath: true }));
 
 // Cycle our requests through morgan to track our queries
 app.use(morgan('dev'));
