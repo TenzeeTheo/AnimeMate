@@ -12,7 +12,7 @@ import Dashboard from './pages/auth/Dashboard'
 import NotFound from './pages/NotFound'
 
 import PrivateRoutes from './components/layout/PrivateRoutes';
-
+import MangaAdd from "./pages/manga/MangaAdd"
 // {/* my idea */}
 import Cart from './components/utils/Cart'
 import MangaCollection from "./pages/manga/MangaCollection"
@@ -44,9 +44,14 @@ function App(){
 
           {/* Manga Collection */}
           <Route path="store">
-            <Route path="manga" element={ <MangaCollection/>}/>
-            <Route path="best-seller" element={ <BestSeller/>}/>
-            <Route path="popular-series" element={<PopularSeries/>}/>
+                <Route path="mangas" element={ <MangaCollection/>}/>
+                <Route path="best-seller" element={ <BestSeller/>}/>
+                <Route path="popular-series" element={<PopularSeries/>}/>
+            <Route path="manga">
+              <Route element= {<PrivateRoutes/>} >
+                <Route path="add" element = {<MangaAdd/>}/>
+              </Route>
+            </Route>
           </Route>  
 
           <Route path="*" element={<NotFound />} /> 

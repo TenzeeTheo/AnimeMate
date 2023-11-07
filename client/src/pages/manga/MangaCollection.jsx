@@ -5,8 +5,13 @@ import List from '../../components/feature/Manga/List'
 import Container from "react-bootstrap/Container";
 import TuLoader from '../../components/common/Loader/TuLoader'
 
+import { Link } from 'react-router-dom';
+
+import useAuth from '../../hooks/useAuth';
+
 
 const MangaCollection = () => {
+  const {user} =useAuth();
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false);
@@ -62,6 +67,16 @@ const MangaCollection = () => {
   return (
     <Container className="text-center mt-4">
       <h1> SHOP FOR AUSTRALIA'S MOST LOVED MANGA TITLES!</h1>
+
+
+      {/* Admin Section Add Manga */}
+
+      {user && <div className='py-5'>
+        <button> <Link to='/store/manga/add'>Add Manga</Link> </button> </div>}
+
+
+
+
       <List products={data}/>
     </Container>
   )

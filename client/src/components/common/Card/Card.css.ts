@@ -7,6 +7,8 @@ export const bg = style({
   margin: 0,
   padding: '0 32px',
   background: vars.colors.primary,
+  minHeight: "80vh",
+
 });
 
 export const card = style({
@@ -16,7 +18,7 @@ export const card = style({
   zIndex: 3,
   width: '100%', 
   maxWidth: '500px', 
-  height: '550px',
+  maxHeight: '950px',
   margin: '0 20px',
   padding: '170px 30px 54px',
   borderRadius: '1.25rem',
@@ -44,3 +46,31 @@ export const logo = style({
   width: '64px',
   height: '64px',
 });
+
+
+
+// export const generalForm = style({
+//   minWidth: "60vw"
+// })
+
+// export const authForm = style({
+//   minWidth: "25vw"
+// })
+
+// export const container = style({
+//   marginTop: "1rem",
+//   minHeight: "70vh",
+//   display: "flex",
+//   flexDirection: "column"
+// })
+
+// export const leadCard = style({
+//   background: vars.colors.primary,
+//   color: vars.colors.complementary,
+//   margin: "auto",
+//   padding: "2rem",
+//   borderRadius: "1rem",
+//   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
+//   textAlign: "center",
+// })
+

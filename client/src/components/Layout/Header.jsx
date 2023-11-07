@@ -34,7 +34,7 @@ const Header = () => {
           </NavDropdown> */}
 
       <Dropdown as={ButtonGroup}>
-      <Button variant="Secondary" href='/store/manga' >MANGA</Button>
+      <Button variant="Secondary" href='/store/mangas' >MANGA</Button>
 
       <Dropdown.Toggle split variant="Secondary" id="dropdown-split-basic" />
       <Dropdown.Menu>
