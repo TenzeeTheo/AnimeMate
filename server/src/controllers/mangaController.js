@@ -83,6 +83,82 @@ module.exports ={
             return next(ApiError.internal('The items selected could not be found', err));
             
         }
+    },
+    async getMangaById(req,res, next){
+        debugREAD(req.params);
+        try {
+        // Store the document query in variable & call GET method for ID
+            const mangaRef = db.collection('Manga').doc(req.params.id);
+            const doc = await mangaRef.get();
+
+        // [400 ERROR] Check for User Asking for Non-Existent Documents
+        if (!doc.exists) {
+        return next(ApiError.badRequest('The manga you were looking for does not exist'));
+
+         // SUCCESS: Send back the specific document's data
+      } else {
+        res.send(doc.data());
+      }
+            
+        } catch (error) {
+
+        return next(ApiError.internal('Your request could not be processed at this time', err));
+        }
+    },
+    async putMangaById(req, res, next){
+        debugWRITE(req.body);
+        debugWRITE(req.files);
+        debugREAD(req.params.id);
+        debugWRITE(res.locals);
+     // SAVE TO CLOUDE STORAGE(FILE)
+    let downloadURL = null;
+    try {
+        if(req.files){
+        // (i) Storage-Upload
+            const filename = res.locals.filename;
+            downloadURL = await storageBucketUpload(filename);
+
+            // (ii) Delete OLD image version in Storage Bucket, if it exists
+
+
+            // (iii) IMAGE NOT CHANGED: We just pass back the current downloadURL and pass that back to the database, unchanged!
+        }else{
+            console.log('No change')
+            downloadURL = req.body.image
+
+
+        }
+    
+        
+    } catch (err) {
+        return next(ApiError.internal('An error occurred in uploading the image to storage', err));
+    }
+
+
+    // SAVE TO FIRESTORE (ALL DATA)
+        try {
+            const mangaRef = db.collection('Manga').doc(req.params.id);
+            const response = await mangaRef.update({
+                name: req.body.name,
+                description: req.body.description,
+                author: req.body.author,
+                price: Number(req.body.price),
+                page: Number(req.body.page),
+                releaseDate: Date (req.body.releaseDate),
+                onSale: req.body.onSale,
+                isAvailable: req.body.isAvailable,
+                image: downloadURL
+            })
+        res.send(response.id);
+
+
+
+            
+        } catch (err) {
+            return next(ApiError.internal('The items selected could not be found', err));
+            
+        }
+
     }
 
 

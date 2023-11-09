@@ -12,7 +12,7 @@ const mangaRoutes = require('./mangaRoutes');
 module.exports = () => {
   // Test GET Route
   router.get('/', (req, res, next) => {
-    res.send('Welcome to the Timbertop United API');
+    res.send('Welcome to the Anime Mate');
   });
 
   // Sub-Routes

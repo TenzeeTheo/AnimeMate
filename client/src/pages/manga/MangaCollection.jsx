@@ -42,9 +42,6 @@ const MangaCollection = () => {
       
     }
   }
-
-
-   
      // CONDITIONAL LOAD: ERROR
      if (error) {
       return (

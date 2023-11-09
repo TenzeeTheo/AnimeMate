@@ -14,6 +14,8 @@ module.exports = {
     snapshot.forEach(doc => {
       users.push({
         id: doc.id,
+        firstName: doc.data().firstName,
+        lastName: doc.data().lastName,
         username: doc.data().username,
         email: doc.data().email,
         password: doc.data().password,

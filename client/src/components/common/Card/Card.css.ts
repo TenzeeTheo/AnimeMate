@@ -6,7 +6,7 @@ export const bg = style({
   placeItems: 'center',
   margin: 0,
   padding: '0 32px',
-  background: vars.colors.primary,
+  // background: vars.colors.primary,
   minHeight: "80vh",
 
 });

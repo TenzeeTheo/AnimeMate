@@ -4,7 +4,7 @@ import {toast} from 'react-toastify'
 
 // CREATE NEW INSTANCE OF AXIOS: Allows us to customise its configuration
 const api = axios.create({
-  // baseURL: "http://localhost:5000"
+  // baseURL: "http://localhost:5050"
   baseURL: import.meta.env.VITE_API_URL
 });
 

@@ -20,6 +20,8 @@ module.exports = {
       snapshot.forEach(doc => {
         users.push({
           id: doc.id,
+          firstName:doc.data().firstName,
+          lastName:doc.data().lastName,
           username: doc.data().username,
           email: doc.data().email,
           isAdmin: doc.data().isAdmin
@@ -33,7 +35,7 @@ module.exports = {
   async register(req, res, next){
     try {
       // Destructure specific properties for use
-      const { username, email, password } = req.body;
+      const { username, email, password,firstName,lastName } = req.body;
 
       // Validation: Block matching user email
       const userMatch = await findUser(email);
@@ -44,6 +46,8 @@ module.exports = {
       // Save new user to database
       const usersRef = db.collection('users'); 
       const response = await usersRef.add({
+        firstName:firstName,
+        lastName:lastName,
         username: username,
         email: email,
         password: await hashPassword(password),

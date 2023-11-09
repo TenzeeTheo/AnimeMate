@@ -40,15 +40,15 @@ const Login = () => {
      try {
       const response = await authService.login(user);
       loginSaveUser(response.data);
-      navigate('/dashboard');
+   
+    
+      navigate('/');
     } catch(err) {
       console.log(err?.response);
       setTimeout(() => {setLoading(false)}, 1000);
     }
   }
   
-  
-
   return (
     <Card title="Log In" className={styles.container} authform >
        <Form  onSubmit={handleSubmit}>
@@ -85,3 +85,5 @@ const Login = () => {
 }
 
 export default Login
+
+

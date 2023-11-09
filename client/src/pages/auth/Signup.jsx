@@ -18,15 +18,18 @@ const SignUp = () => {
     const passwordConfirm = useRef();
 
     const [user, setUser] = useState({
-        username: "",
-        email: "",
-        password: "",
+
+      firstName: "",
+      lastName: "",
+      username: "",
+      email: "",
+      password: "",
       });
     const [ loading, setLoading] = useState(false);
 
 
   // destructure state object 
-  const { username, email, password} = user;
+  const { username, email, password, firstName, lastName} = user;
 
 // function 1 Handle state Value change on input 
   const handleTextChange = (e) =>{
@@ -63,7 +66,29 @@ const SignUp = () => {
   return (
     <Card title=' Create Account' authform>
          <Form onSubmit={handleSubmit} >
-        {/* Input 1 Username */}
+        {/* Input 1 a firstName */}
+            <Form.Group className="mb-3" controlId="firstName">
+                <Form.Control
+                type="text" 
+                placeholder="First-Name"
+                name="firstName" 
+                className="text-center"
+                value={firstName}
+                onChange={handleTextChange}
+                />
+            </Form.Group>
+        {/* Input 1 b lastName */}
+            <Form.Group className="mb-3" controlId="lastName">
+                <Form.Control
+                type="text" 
+                placeholder="Last-Name"
+                name="lastName" 
+                className="text-center"
+                value={lastName}
+                onChange={handleTextChange}
+                />
+            </Form.Group>
+        {/* Input 2 Username */}
             <Form.Group className="mb-3" controlId="username">
                 <Form.Control
                 type="text" 
@@ -74,7 +99,7 @@ const SignUp = () => {
                 onChange={handleTextChange}
                 />
             </Form.Group>
-             {/* Input 2 eamil */}
+             {/* Input 3 eamil */}
             <Form.Group className="mb-3" controlId="email">
                 <Form.Control
                 type="text" 
@@ -85,7 +110,7 @@ const SignUp = () => {
                 onChange={handleTextChange}
                 />
             </Form.Group>
-            {/* Input 3 Password */}
+            {/* Input 4 Password */}
                 <Form.Group className="mb-3" controlId="password">
                     <Form.Control
                     type="password" 
@@ -97,7 +122,7 @@ const SignUp = () => {
 
                      />
                 </Form.Group>
-                {/* Input 4 Password Confirm */}
+                {/* Input 4 a Password Confirm */}
                 <Form.Group className="mb-3" controlId="password-confirm">
                     <Form.Control
                     type="password" 
@@ -108,12 +133,12 @@ const SignUp = () => {
                 </Form.Group>
                 <MyBtn loadingState={loading}>
                      {loading ? <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          /> : 'submit'}
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    /> : 'submit'}
                 </MyBtn>
                 <div className={styles.userNav}>
                     <span>
