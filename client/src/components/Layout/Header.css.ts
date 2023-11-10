@@ -24,13 +24,24 @@ export const Content = style({
     },
   });
   export const user = style({
-    width: 60,
+  
+    maxWidth: 60,
     ':hover': {
       animationName: bounceAnimation,
       animationDuration: '0.5s',
       animationTimingFunction: 'ease',
       animationPlayState: 'running',
     },
+  });
+  export const right = style({
+    '@media': {
+     
+      ' screen and (max-width: 1968px)': {
+        marginLeft:'900px',
+    },
+    }
+    
+
   });
   export const bag = style({
     width: 60,
