@@ -21,6 +21,17 @@ function post (data){
 function getById(id){
   return api.get('/api/manga/' + id)
 }
+function put(id, data, uploadedfile){
+
+  const formData = prepareFormData(data, uploadedfile);
+  return api.put(
+    '/api/manga/' + id, 
+    formData, 
+    formConfig
+  );
+
+}
+
 
 // [1] Form Config: sets the content header to form data
 const formConfig ={
@@ -57,6 +68,7 @@ const productService = {
   getAll,
   post,
   getById,
+  put
  
 }
 

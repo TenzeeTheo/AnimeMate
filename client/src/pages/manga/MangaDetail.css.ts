@@ -16,9 +16,8 @@ export const productBox = style({
 export const productBoxRight = style({
     "@media": {
         'screen and (min-width: 768px)': {
-        marginLeft: "10%", // Change to column for small screens
+        marginLeft: "10%", 
     },
   }
 
 })
-

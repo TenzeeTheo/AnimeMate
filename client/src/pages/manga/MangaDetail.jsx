@@ -1,14 +1,20 @@
 import {useState,useEffect,useRef} from 'react'
 import { useParams } from 'react-router-dom';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table ,Spinner} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 import * as styles from "./MangaDetail.css";
 import productService from '../../services/productService';
 import { priceFormatter } from '../../utils/readUtils';
 import TuLoader from '../../components/common/Loader/TuLoader';
+import MyBtn from '../../components/common/Button/MyBtn';
+
+
 
 
 const MangaDetail = () => {
+  const {user} = useAuth();
     const params =useParams();
     const [mangaData, setMangaData] = useState({
         id: params.id,
@@ -85,29 +91,7 @@ const MangaDetail = () => {
         )
       }
   return (
-//      <Container>
-//     {/* MAIN PRODUCT SECTION */}
-//     <div className={styles.productBox}>
-//       {/* IMAGE BOX: LEFT */}
-//       <div className={styles.productBoxLeft}>
-//         <img className={styles.productWindow} src={image} alt={name} />
-//       </div>
-//       {/* TEXT & PURCHASE AREA: RIGHT */}
-//       <div className={styles.productBoxRight}>
-//         {/* HERO BOX */}
-//         <div className={styles.productHeroContainer}>
-//           <h2>{name}</h2>
-//           <p>{priceFormatter(price)}</p>
-//           <p>description:{description}</p>
-//           <p>author: {author}</p>
-//           <p>page: {page}</p>
-//           <p>isAvailable: {isAvailable ? 'Yes' : 'No'}</p>
-//                     {/* <p>releaseDate: {releaseDate}</p> */}
-//           <p>releaseDate: {formattedReleaseDate.toDateString()}</p>
-//         </div>
-//       </div>
-//     </div>
-//   </Container>
+
 <Container>
   {/* MAIN PRODUCT SECTION */}
   <div className={styles.productBox}>
@@ -151,9 +135,23 @@ const MangaDetail = () => {
         </tr>
       </tbody>
     </Table>
-    <h4>Story goes like this:</h4>
+      <h4>Story goes like this:</h4>
         <p>{description}</p>
       </div>
+      {/* button for the Edit and Delete */}
+    {user.isAdmin &&  <div>
+        <Link to={`/store/manga/edit/${id}`} >Edit</Link>
+          <MyBtn loadingState={loading} >
+                  {loading ? <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                  />: 'Delete'}
+          </MyBtn>
+                
+      </div>}
     </div>
   </div>
 </Container>

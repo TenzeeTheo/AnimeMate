@@ -1,6 +1,6 @@
 const { db } = require('../config/db');
 const ApiError = require('../utilities/ApiError');
-const { storageBucketUpload } = require('../utilities/bucketServices');
+const { storageBucketUpload,deleteFileFromBucket } = require('../utilities/bucketServices');
 
 const debugREAD = require('debug')('app:read');
 const debugWRITE = require('debug')('app:write');
@@ -119,8 +119,11 @@ module.exports ={
             downloadURL = await storageBucketUpload(filename);
 
             // (ii) Delete OLD image version in Storage Bucket, if it exists
+            if(req.body.uploadedFile){
+                debugWRITE(`Deleting old image in storage: ${req.body.uploadedFile}`);
+                const bucketResponse = await deleteFileFromBucket(req.body.uploadedFile)
 
-
+            }
             // (iii) IMAGE NOT CHANGED: We just pass back the current downloadURL and pass that back to the database, unchanged!
         }else{
             console.log('No change')
@@ -149,7 +152,7 @@ module.exports ={
                 isAvailable: req.body.isAvailable,
                 image: downloadURL
             })
-        res.send(response.id);
+        res.send(response);
 
 
 

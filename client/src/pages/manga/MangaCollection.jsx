@@ -34,7 +34,7 @@ const MangaCollection = () => {
     try {
      const res = await productService.getAll()
      const data = await res.data;      
-     console.log(data);
+    //  console.log(data);
      setData(data)
     } catch (err) {
       console.log(err?.response);
@@ -63,18 +63,18 @@ const MangaCollection = () => {
 
   return (
     <Container className="text-center mt-4">
-      <h1> SHOP FOR AUSTRALIA'S MOST LOVED MANGA TITLES!</h1>
-
-
-      {/* Admin Section Add Manga */}
-
-      {user && <div className='py-5'>
-        <button> <Link to='/store/manga/add'>Add Manga</Link> </button> </div>}
-
+      <h1> SHOP FOR AUSTRALIA MOST LOVED MANGA TITLES!</h1>
 
 
 
       <List products={data}/>
+      {user.isAdmin && ( 
+          <div className='py-5'>
+            <button>
+              <Link to='/store/manga/add'>Add Manga</Link>
+            </button>
+          </div>
+        )}
     </Container>
   )
 }

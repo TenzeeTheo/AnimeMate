@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import { Container, Navbar, Nav, Dropdown } from 'react-bootstrap';
+import { Container, Navbar, Nav, Dropdown,Button,ButtonGroup} from 'react-bootstrap';
 import logo from '../../assets/manga.svg';
 import users from '../../assets/User.svg';
 import bag from '../../assets/bag.svg';
@@ -34,17 +34,16 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           {/* Nav items for small screens */}
           <Navbar.Collapse className="d-lg-none">
-          <Nav className="ml-auto">
-            <Nav.Item as={Dropdown}>
-              <Dropdown.Toggle variant="Secondary" id="dropdown-basic" href="/store/mangas">
-                MANGA
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="/store/best-seller">BEST-SELLER</Dropdown.Item>
-                <Dropdown.Item href="/store/popular-series">POPULAR SERIES</Dropdown.Item>
-              </Dropdown.Menu>
-            </Nav.Item>
-          </Nav>
+          <Dropdown as={ButtonGroup}>
+      <Button variant="Secondary" href="/store/mangas"> MANGA</Button>
+
+      <Dropdown.Toggle split variant="Secondary" id="dropdown-split-basic" />
+
+      <Dropdown.Menu>
+          <Dropdown.Item href="/store/best-seller">BEST-SELLER</Dropdown.Item>
+          <Dropdown.Item href="/store/popular-series">POPULAR SERIES</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
         </Navbar.Collapse>
 
        
