@@ -1,6 +1,6 @@
 import * as styles from './NotFound.css'
 import { Image } from 'react-bootstrap'
-import NotFoundImg from '../assets/NotFound.png'
+import NotFoundImg from '../assets/image/NotFound.png'
 import 'animate.css/animate.min.css'; 
 
 const NotFound = () => {

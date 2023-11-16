@@ -40,8 +40,7 @@ const Header = () => {
       <Dropdown.Toggle split variant="Secondary" id="dropdown-split-basic" />
 
       <Dropdown.Menu>
-          <Dropdown.Item href="/store/best-seller">BEST-SELLER</Dropdown.Item>
-          <Dropdown.Item href="/store/popular-series">POPULAR SERIES</Dropdown.Item>
+          <Dropdown.Item href="/store/manga/Onsale">On Sale</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
         </Navbar.Collapse>
@@ -58,7 +57,6 @@ const Header = () => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                <Dropdown.Item href="/Favorite">Favorite</Dropdown.Item>
                 <Dropdown.Item href="/login" onClick={handleLoginToggle}>
                   {auth.user?.id ? 'Log Out' : 'Log In'}
                 </Dropdown.Item>

@@ -7,6 +7,9 @@ function getAll() {
 
 }
 // GET ALL ONSALE - SALE
+function getAllSale(){
+  return api.get('/api/manga/onSale');
+}
 
 // POST ADD MANGA
 function post (data){
@@ -29,7 +32,10 @@ function put(id, data, uploadedfile){
     formData, 
     formConfig
   );
-
+}
+// DELETE - ProductDetail
+function del(id) {
+  return api.delete('/api/manga/' + id);
 }
 
 
@@ -68,7 +74,9 @@ const productService = {
   getAll,
   post,
   getById,
-  put
+  put,
+  del,
+  getAllSale
  
 }
 

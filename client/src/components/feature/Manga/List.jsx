@@ -1,14 +1,15 @@
 import * as styles from './List.css';
 import Item from './Item';
 
-function List({ products, user }) {
+function List({ products }) {
   return (
     <div className={styles.gridContainer}>
-      <div className={`${styles.listGrid} ${styles.listGridSmallScreen}`}>
+      <div className={`${styles.listGrid} `}>
         {products.length === 0 && <p>No Manga Listed...</p>}
         {products.length > 0 &&
           products.map((product) => (
-            <Item
+          
+              <Item
               key={product.id}
               id={product.id}
               name={product.name}
@@ -21,8 +22,11 @@ function List({ products, user }) {
               page={product.page}
               releaseDate={product.releaseDate}
             />
-          ))}
-       
+           
+            
+          ))
+          }
+          
       </div>
     </div>
   );

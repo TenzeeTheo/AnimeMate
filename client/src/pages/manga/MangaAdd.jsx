@@ -31,6 +31,7 @@ const MangaAdd = () => {
     // [1] handleTextChange will handle change in state value event for TEXT data
 const handleTextChange = (e) => {
     const { name, value } = e.target;
+    // const parsedValue = value === 'true';
     setMangaData({ ...mangaData, [name]: value });
   }
 // [2] handleFileChange will handle change in state for FILE data
@@ -55,7 +56,6 @@ const handleSubmit = async (e) =>{
         setTimeout(() => {setLoading(false)}, 1000);
     }
 }
-
 
   return (
     <Card title=" Add Manga">
@@ -83,7 +83,7 @@ const handleSubmit = async (e) =>{
                             />
                 </Form.Group>
 
-            {/* GROUP 3: CATEGORY */}
+            {/* GROUP 3: AUTHOR */}
                 <Form.Group className="mb-3">
                         <Form.Control 
                             type='text'
@@ -96,7 +96,7 @@ const handleSubmit = async (e) =>{
                         </Form.Control>
                 </Form.Group>
 
-            {/* GROUP 4: PRODUCT DETAILS */}
+            {/* GROUP 4: Price  */}
                 
                 <Form.Group className="mb-3">
                     <Row>

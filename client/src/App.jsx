@@ -18,9 +18,8 @@ import MangaCollection from "./pages/manga/MangaCollection"
 import MangaAdd from "./pages/manga/MangaAdd"
 import MangaDetail from "./pages/manga/MangaDetail"
 import MangaEdit from "./pages/manga/MangaEdit"
-// import BestSeller from "./pages/manga/Best-Seller"
-// import PopularSeries from "./pages/manga/Popular-Series"
 // {/* my extra */}
+import MangaSale from "./pages/manga/MangaSale"
 
 
 function App(){
@@ -47,13 +46,12 @@ function App(){
           {/* Manga Collection */}
           <Route path="store">
                 <Route path="mangas" element={ <MangaCollection/>}/>
-                {/* <Route path="best-seller" element={ <BestSeller/>}/> */}
-                {/* <Route path="popular-series" element={<PopularSeries/>}/> */}
             <Route path="manga">
               {/* NEW:MANGA DETAILS PAGE */}
               <Route path=":id" element={<MangaDetail/>}/>
               <Route element= {<PrivateRoutes/>} >
                 <Route path="add" element = {<MangaAdd/>}/>
+                <Route path="OnSale" element={ <MangaSale/>}/>
                 <Route path="edit/:id" element = {<MangaEdit/>}/>
               </Route>
             </Route>

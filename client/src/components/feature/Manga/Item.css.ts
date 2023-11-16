@@ -26,3 +26,11 @@ export const productCardTitle = style({
 export const itemImage = style({
   maxWidth: "100%", 
 });
+export const container = style({
+  background:"black"
+});
+export const onSalePrice = style({
+  color:"red"
+});
+
+

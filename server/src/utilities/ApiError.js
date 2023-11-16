@@ -24,6 +24,14 @@ class ApiError {
   static notFound() {
     return new ApiError(404, 'Resource Not Found');
   }
+    // [401] unauthorize
+      static denyAccess(msg){
+        return new ApiError(401, `Access Denied: ${msg}`)
+      }
+    // [403] Forbidden
+    static forbidden(msg){
+      return new ApiError(403, `Access Denied: ${msg}`)
+    }
 
      // [413] Entity Too Large
   static tooLarge(msg){

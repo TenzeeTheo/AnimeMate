@@ -54,8 +54,8 @@ const SignUp = () => {
   try {
     const response = await authService.register(user);
     loginSaveUser(response.data);
-    //  navigate to the dashboard page
-    navigate('/dashboard');
+    //  navigate to the profile page
+    navigate('/profile');
    } catch (err) {
      console.log(err?.response);
     //  toast.error(err.response.data);

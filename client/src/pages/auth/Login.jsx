@@ -19,6 +19,7 @@ const Login = () => {
       password: ''
     });
     const [loading, setLoading] = useState(false);
+    // console.log(user)
 
       // Destructure data state nested object properties
   const { email, password } = user;

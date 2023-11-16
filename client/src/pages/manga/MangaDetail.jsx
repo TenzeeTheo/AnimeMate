@@ -1,5 +1,5 @@
 import {useState,useEffect,useRef} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { Container, Table ,Spinner} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
@@ -8,7 +8,8 @@ import * as styles from "./MangaDetail.css";
 import productService from '../../services/productService';
 import { priceFormatter } from '../../utils/readUtils';
 import TuLoader from '../../components/common/Loader/TuLoader';
-import MyBtn from '../../components/common/Button/MyBtn';
+import DeleteBtn from '../../components/common/Button/Delete/DeleteBtn';
+import Edit from '../../components/common/Button/Edit/Edit';
 
 
 
@@ -16,6 +17,8 @@ import MyBtn from '../../components/common/Button/MyBtn';
 const MangaDetail = () => {
   const {user} = useAuth();
     const params =useParams();
+    const navigate = useNavigate();
+
     const [mangaData, setMangaData] = useState({
         id: params.id,
         name: "",
@@ -72,6 +75,24 @@ const MangaDetail = () => {
             setError(true)
         }
     }
+      // [2] DELETION OF MANGA
+    const handleDelete = async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      try {
+        // Call API - must match server route + pass id to route
+        const response = await productService.del(id);
+        console.log(response);
+        // onSuccess - Redirect
+        setLoading(false);
+        navigate('/store/mangas');
+
+      } catch (err) {
+        console.log(err?.response);
+        setError(true);
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      }
+    };
 
       // CONDITIONAL LOAD: ERROR
       if (error) {
@@ -83,7 +104,7 @@ const MangaDetail = () => {
       }
     
       // CONDITIONAL LOAD: LOADING
-      if (loading) {
+      if (loading && effectRan.current ===false) {
         return (
           <Container className="text-center mt-4">
             <TuLoader />
@@ -93,15 +114,34 @@ const MangaDetail = () => {
   return (
 
 <Container>
+  
   {/* MAIN PRODUCT SECTION */}
   <div className={styles.productBox}>
     {/* IMAGE BOX: LEFT */}
-    <div className={styles.productBoxLeft}>
-      <img className={styles.productWindow} src={image} alt={name} />
+    <div >
+      <img  src={image} alt={name} />
     </div>
+    
     {/* TEXT & PURCHASE AREA: RIGHT */}
     <div className={styles.productBoxRight}>
-      {/* HERO BOX */}
+    <div className={styles.buttonsContainer}>
+    {user.isAdmin && (
+      <div className={styles.button}>
+        <Edit onClick={() => navigate(`/store/manga/edit/${id}`)}>Edit</Edit>
+      </div>
+    )}
+
+    {user.isAdmin && (
+      <div className={styles.button}>
+        <DeleteBtn
+          variant="dark"
+          size="m"
+          className="rounded-circle inner-shadow"
+          onClick={handleDelete}
+        />
+      </div>
+    )}
+  </div>
       <div className={styles.productHeroContainer}>
         <Table >
       <thead>
@@ -138,20 +178,7 @@ const MangaDetail = () => {
       <h4>Story goes like this:</h4>
         <p>{description}</p>
       </div>
-      {/* button for the Edit and Delete */}
-    {user.isAdmin &&  <div>
-        <Link to={`/store/manga/edit/${id}`} >Edit</Link>
-          <MyBtn loadingState={loading} >
-                  {loading ? <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                  />: 'Delete'}
-          </MyBtn>
-                
-      </div>}
+    
     </div>
   </div>
 </Container>

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import useAuth from '../../hooks/useAuth'
 import Card from '../../components/common/Card/Card'
 import MyBtn from '../../components/common/Button/MyBtn'
-import { ToastContainer, toast } from 'react-toastify';
 
 import { Link } from 'react-router-dom';
 
@@ -12,6 +11,7 @@ const Dashboard = () => {
   // HOOK: CONTEXT FOR AUTH
   const { user, logout } = useAuth();
   const [showUserInfo, setShowUserInfo] = useState(false);
+  console.log(user)
 
   const handleProfileClick = () => {
     setShowUserInfo(!showUserInfo);
@@ -43,6 +43,7 @@ const Dashboard = () => {
         </>
       ) : (
         <h1>Welcome {user.username}</h1>
+        
       )}
     </>
   )}

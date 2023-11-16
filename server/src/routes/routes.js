@@ -9,6 +9,7 @@ const authRoutes = require('./authRoutes');
 const mangaRoutes = require('./mangaRoutes');
 
 
+
 module.exports = () => {
   // Test GET Route
   router.get('/', (req, res, next) => {
@@ -19,7 +20,6 @@ module.exports = () => {
   router.use('/auth', authRoutes());
 
   router.use('/manga', mangaRoutes());
-
 
   return router
 }

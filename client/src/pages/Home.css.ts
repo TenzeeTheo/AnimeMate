@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
 import {vars} from '../styles/theme.css'
-import { before } from "node:test";
 
 
 
@@ -23,25 +22,29 @@ export const cap = style({
     textAlign: 'center',
     border:'10px black',
     zIndex: 2,
+});
+export const visit =style({
+    textDecoration: 'none',
+    fontSize: '16px',
+    color: vars.colors.primary,
 })
-export const btn = style({
-//    width:"100px",
-   backgroundColor: vars.colors.favColor,
-    display: "inlineBlock",
-    padding: "0.9rem 1.8rem",
-    fontSize: vars.fontSizes["3x"],
-    fontWeight: vars.fontWeights.bold,
-    color: "white",
-    border: "none",
-    cursor: "pointer",
-    position: "relative",
-    textDecoration: "none",
-    overflow: "hidden",
-    zIndex: "1",
-    fontFamily: vars.fonts.body,
-  
-    })
-
+export const about =style({
+    marginTop: "2%",
+    boxSizing: "border-box",
+    borderStyle: "solid",
+    borderWidth: "5px",
+    maxWidth:"100%",
+    margin: "auto",
+    textAlign: "center",
+    paddingTop: '80px'
+})
+export const satoi =style({
+    "@media": {
+        'screen and (min-width: 368px)': {
+            maxWidth: '100%',
+    },
+  }
+})
    
 
 

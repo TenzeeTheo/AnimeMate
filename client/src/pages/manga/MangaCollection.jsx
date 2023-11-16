@@ -3,7 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 import productService from '../../services/productService';
 import List from '../../components/feature/Manga/List'
 import Container from "react-bootstrap/Container";
+
 import TuLoader from '../../components/common/Loader/TuLoader'
+import Btn  from '../../components/common/Button/Btn'
 
 import { Link } from 'react-router-dom';
 
@@ -42,6 +44,10 @@ const MangaCollection = () => {
       
     }
   }
+ 
+ 
+
+
      // CONDITIONAL LOAD: ERROR
      if (error) {
       return (
@@ -63,16 +69,17 @@ const MangaCollection = () => {
 
   return (
     <Container className="text-center mt-4">
-      <h1> SHOP FOR AUSTRALIA MOST LOVED MANGA TITLES!</h1>
+      <h1> SHOP FOR AUSTRALIA MOST LOVED MANGA!</h1>
 
 
 
       <List products={data}/>
-      {user.isAdmin && ( 
+      {user && ( 
           <div className='py-5'>
-            <button>
-              <Link to='/store/manga/add'>Add Manga</Link>
-            </button>
+            <Btn >
+              <Link to='/store/manga/add' style={{ textDecoration: 'none', fontSize: '16px', color: 'skyblue' }}>Add Manga</Link>
+            </Btn>
+           
           </div>
         )}
     </Container>

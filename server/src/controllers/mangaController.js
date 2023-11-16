@@ -1,6 +1,6 @@
 const { db } = require('../config/db');
 const ApiError = require('../utilities/ApiError');
-const { storageBucketUpload,deleteFileFromBucket } = require('../utilities/bucketServices');
+const { storageBucketUpload,deleteFileFromBucket,getFileFromUrl } = require('../utilities/bucketServices');
 
 const debugREAD = require('debug')('app:read');
 const debugWRITE = require('debug')('app:write');
@@ -12,6 +12,7 @@ module.exports ={
             const mangaRef = db.collection('Manga');
             // const snapshot = await mangaRef.where("isAvailable", "==", "true").orderBy("name", "asc").get();
             const snapshot = await mangaRef.orderBy("name").get();
+            
 
         // [400 ERROR] Check for User Asking for Non-Existent Documents
         if (snapshot.empty) {
@@ -162,9 +163,73 @@ module.exports ={
             
         }
 
-    }
+    },
+      // [5] DELETE MANGA BY ID
+    async deleteMangaById(req, res, next) {
+        // (a) Delete document image file from storage
+        try {
+        // (i) Store the document query in variable & call GET method for ID
+        const mangaRef = db.collection('Manga').doc(req.params.id);
+        const doc = await mangaRef.get();
+
+        // [400 ERROR] Check for User Asking for Non-Existent Documents
+        if (!doc.exists) {
+            return next(
+            ApiError.badRequest('The Manga you were trying to delete does not exist')
+            );
+        }
+        // (ii) Store downloadURL and obtain uploadedFile in storage bucket
+        const downloadURL = doc.data().image;
+        const uploadedFile = getFileFromUrl(downloadURL);
+        const bucketResponse = await deleteFileFromBucket(uploadedFile);
+
+        // (b) Delete document from Cloud Firestore
+        if (bucketResponse) {
+            // NOTE: We defined Ref earlier!
+            const response = await mangaRef.delete({ exists: true });
+            // SUCCESS: Issue back response for timebeing
+            res.send(response);
+        }
+        // [500 ERROR] Checks for Errors in our Query - issue with route or DB query
+        } catch (err) {
+        return next(
+            ApiError.internal('Your request could not be saved at this time', err)
+        );
+        }
+    },
+   
+    async getOnSaleManga(req, res, next){
+        try {
+            const mangaRef = db.collection('Manga');
+            const snapshot = await mangaRef.where("onSale", "==", true).orderBy("name", "desc").get();
 
 
 
-
+        // [400 ERROR] Check for User Asking for Non-Existent Documents
+        if (snapshot.empty) {
+            return next(ApiError.badRequest('The items you were looking for do not exist'));
+        }
+        // SUCCESS: Push object properties to array and send to client
+        let docs = [];
+        snapshot.forEach(doc => {
+            docs.push({
+                id: doc.id,
+                name: doc.data().name,
+                author: doc.data().author,
+                description: doc.data().description,
+                price: doc.data().price,
+                page: doc.data().page,
+                onSale: doc.data().onSale,
+                isAvailable: doc.data().isAvailable,
+                image: doc.data().image,
+                releaseDate: doc.data().releaseDate,
+            });
+        });
+        res.send(docs);
+            
+        } catch (err) {
+            return next(ApiError.internal('The Product have gone missing ~Sorry!',err))
+            
+        }
+}
 }

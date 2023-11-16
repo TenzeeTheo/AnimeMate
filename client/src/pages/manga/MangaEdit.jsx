@@ -124,7 +124,7 @@ const handleSubmit = async (e) =>{
       }
     
       // CONDITIONAL LOAD: LOADING
-      if (loading) {
+      if (loading && effectRan.current ===false) {
         return (
           <Container className="text-center mt-4">
             <TuLoader />

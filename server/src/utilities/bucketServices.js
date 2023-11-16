@@ -1,6 +1,7 @@
 // Import in modules
 const { bucket } = require('../config/db');
 const debugBucket = require('debug')('app:bucket');
+const config = require('../config/config')
 const uuid = require('uuid');
 const fs = require('fs');
 
@@ -61,7 +62,22 @@ module.exports = {
 
     return downloadURL;
   },
-  async deleteFileFromBucket(uploadedFile) {
+ 
+   getFileFromUrl(downloadURL) {
+    // Slice off the base URL from downloadURL
+    const baseURL = `https://firebasestorage.googleapis.com/v0/b/${config.db.storageBucket}/o/`;
+   debugBucket(baseURL);
+    let fileGlob = downloadURL.replace(baseURL, "");
+    
+    // Remove everything after the query string
+    const indexOfEndPath = fileGlob.indexOf("?");
+    fileGlob = fileGlob.substring(0, indexOfEndPath);
+    
+    // Return existing uploaded file glob
+   debugBucket(`file in bucket queued for deletion: ${fileGlob}`);
+    return fileGlob;
+  },
+   async deleteFileFromBucket(uploadedFile) {
     const file = bucket.file(uploadedFile);
     const fileChecker = await file.exists();
     // 400 Error

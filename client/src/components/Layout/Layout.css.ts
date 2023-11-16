@@ -3,7 +3,6 @@ import { vars } from '../../styles/theme.css';
 
 export const app = style({
   fontFamily: vars.fonts.body,
-  backgroundColor: vars.colors.primary,
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
