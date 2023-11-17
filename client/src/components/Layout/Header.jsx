@@ -25,6 +25,7 @@ const Header = () => {
     }
   };
 
+
   return (
     <Navbar expand="lg" className={styles.Content}>
       <Container>
@@ -69,7 +70,7 @@ const Header = () => {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-
+      
       
       </Container>
     </Navbar>

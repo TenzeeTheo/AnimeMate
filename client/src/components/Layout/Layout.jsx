@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import bg from '../../assets/image/bg.svg';
+import { useState } from 'react'; 
 import * as styles from './Layout.css';
 
 const Layout = () => {

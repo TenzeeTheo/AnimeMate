@@ -136,6 +136,8 @@ const handleSubmit = async (e) =>{
   return (
     <Card title=" Edit Manga">
         <Form onSubmit={handleSubmit}>
+        <Form.Label >Name</Form.Label>
+
             {/* GROUP 1: NAME */}
                 <Form.Group className="mb-3">
                         <Form.Control 
@@ -146,7 +148,8 @@ const handleSubmit = async (e) =>{
                             onChange={ handleTextChange }                    
                         />
                 </Form.Group>
-              
+                <Form.Label >Story Line</Form.Label>
+
             {/* GROUP 2: DESCRIPTION */}
                 <Form.Group className="mb-3">
                         <Form.Control 
@@ -159,7 +162,9 @@ const handleSubmit = async (e) =>{
                             />
                 </Form.Group>
 
-            {/* GROUP 3: CATEGORY */}
+            {/* GROUP 3: Author */}
+            <Form.Label >Author</Form.Label>
+
                 <Form.Group className="mb-3">
                         <Form.Control 
                             type='text'
